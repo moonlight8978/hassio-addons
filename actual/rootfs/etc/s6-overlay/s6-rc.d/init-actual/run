@@ -1,0 +1,16 @@
+#!/command/with-contenv bashio
+
+declare port
+declare login_method
+
+CONFIG=/data/config.json
+
+cp /etc/actual/config.json $CONFIG
+
+port=$(bashio::config 'port')
+login_method=$(bashio::config 'login_method')
+
+bashio::log.info "-> Creating actual configuration"
+sed -i "s|{PORT}|${port}|" $CONFIG
+sed -i "s|{LOGIN_METHOD}|${login_method}|" $CONFIG
+

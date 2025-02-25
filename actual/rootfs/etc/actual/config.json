@@ -1,0 +1,5 @@
+{
+  "port": {PORT},
+  "loginMethod": "{LOGIN_METHOD}",
+  "allowedLoginMethods": ["password", "header"]
+}
