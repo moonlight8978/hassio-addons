@@ -3,4 +3,4 @@
 bashio::log.info "Starting Actual..."
 
 cd /app
-ACTUAL_DATA_DIR=/data exec yarn start:server
+exec yarn start:server

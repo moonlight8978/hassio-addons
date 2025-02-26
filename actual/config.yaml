@@ -10,19 +10,22 @@ arch:
   - armv7
   - i386
 options:
-  port: 5006
-  login_method: header
+  login_method: password
   allowed_login_methods:
     - password
     - header
 schema:
-  port: int?
   login_method: list(password|header|openid)?
   allowed_login_methods:
     - match(^(password|header|openid)$)
 environment:
   ACTUAL_DATA_DIR: /data
+  NODE_ENV: production
 ports:
   5006/tcp: 5006
 ports_description:
   5006/tcp: WebUI
+ingress: true
+ingress_port: 5006
+ingress_stream: true
+panel_icon: "mdi:cash-multiple"

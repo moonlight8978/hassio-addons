@@ -1,16 +1,23 @@
 #!/command/with-contenv bashio
 
-declare port
 declare login_method
+declare -a allowed_login_methods
 
 CONFIG=/data/config.json
 
+mkdir -p /data
 cp /etc/actual/config.json $CONFIG
 
-port=$(bashio::config 'port')
 login_method=$(bashio::config 'login_method')
+export login_method
+allowed_login_methods=$(bashio::config 'allowed_login_methods')
 
 bashio::log.info "-> Creating actual configuration"
-sed -i "s|{PORT}|${port}|" $CONFIG
-sed -i "s|{LOGIN_METHOD}|${login_method}|" $CONFIG
+yq -i '.loginMethod = strenv(login_method)' $CONFIG
+yq -i '.allowedLoginMethods = []' $CONFIG
+
+for allowed_login_method in ${allowed_login_methods[@]}; do
+    export allowed_login_method
+    yq -i '.allowedLoginMethods += [ strenv(allowed_login_method) ]' $CONFIG
+done
 
