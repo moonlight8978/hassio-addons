@@ -1,6 +1,6 @@
 name: Actual Budget
 description: "Actual Budget addons for Home Assistant"
-version: "0.0.1"
+version: "1.0.0"
 slug: "actual"
 init: false
 arch:
@@ -25,7 +25,9 @@ ports:
   5006/tcp: 5006
 ports_description:
   5006/tcp: WebUI
-ingress: true
-ingress_port: 5006
-ingress_stream: true
-panel_icon: "mdi:cash-multiple"
+
+# The frontend assets use absolute path, it's broken when combine with ingress
+# ingress: true
+# ingress_port: 5006
+# ingress_stream: true
+# panel_icon: "mdi:cash-multiple"
