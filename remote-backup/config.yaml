@@ -1,0 +1,30 @@
+name: Remote Backup
+description: Push backup files to remote storage
+url: https://github.com/moonlight8978/hassio-addons
+codenotary: work@bichls.dev
+version: "1.0.0"
+slug: "remote-backup"
+init: false
+boot: manual
+map:
+  - backup:rw
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+options:
+  endpoint_url: https://s3.us-east-1.amazonaws.com
+  region: us-east-1
+  bucket: ""
+  access_key: ""
+  secret_key: ""
+  prefix: ""
+schema:
+  access_key: str
+  secret_key: str
+  bucket: str
+  region: str
+  endpoint_url: str
+  prefix: str?
