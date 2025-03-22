@@ -2,7 +2,7 @@ name: Actual Budget
 description: "Actual Budget (https://actualbudget.org/) addons for Home Assistant"
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
-version: "1.0.0"
+version: v25.3.0
 slug: "actual"
 init: false
 arch:

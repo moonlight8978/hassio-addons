@@ -1,4 +1,10 @@
+# Miscs
 **/.DS_Store
 
+# Secrets
 .env*
 !.env.example
+
+# Temp
+tmp/
+.tmp/

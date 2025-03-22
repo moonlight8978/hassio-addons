@@ -15,12 +15,31 @@ region=$(bashio::config 'region')
 bucket=$(bashio::config 'bucket')
 endpoint_url=$(bashio::config 'endpoint_url')
 prefix=$(bashio::config 'prefix')
+retain_full=$(bashio::config 'retain_full')
+retention=$(bashio::config 'retention')
 
 export AWS_ACCESS_KEY_ID=$access_key
 export AWS_SECRET_ACCESS_KEY=$secret_key
 
 bashio::log.info "Starting backup to S3..."
-duplicity backup --no-encryption --s3-region-name $region --s3-endpoint-url $endpoint_url --progress /backup s3://$bucket/$prefix
+duplicity \
+    --full-if-older-than $retention \
+    --no-encryption \
+    --s3-region-name $region \
+    --s3-endpoint-url $endpoint_url \
+    --progress \
+    /backup \
+    s3://$bucket/$prefix
+bashio::log.info "Done"
+
+bashio::log.info "Starting remove old full backup..."
+duplicity \
+    --s3-region-name $region \
+    --s3-endpoint-url $endpoint_url \
+    remove-all-but-n-full $retain_full \
+    s3://$bucket/$prefix \
+    --force
+bashio::log.info "Done"
 
 if [ $? -ne 0 ]; then
     bashio::log.error "Backup failed"

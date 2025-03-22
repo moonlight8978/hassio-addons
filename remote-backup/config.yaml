@@ -2,7 +2,7 @@ name: Remote Backup
 description: Push backup files to remote storage
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
-version: "1.0.0"
+version: "1.0.1"
 slug: "remote-backup"
 init: false
 boot: manual
@@ -21,6 +21,8 @@ options:
   access_key: ""
   secret_key: ""
   prefix: ""
+  retain_full: 1
+  retention: 7D
 schema:
   access_key: str
   secret_key: str
@@ -28,3 +30,5 @@ schema:
   region: str
   endpoint_url: str
   prefix: str?
+  retain_full: int
+  retention: str
