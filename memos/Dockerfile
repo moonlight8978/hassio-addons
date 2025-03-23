@@ -1,12 +1,11 @@
+ARG BUILD_VERSION
 ARG BUILD_FROM
+
+FROM neosmemo/memos:${BUILD_VERSION} AS build
+
 FROM $BUILD_FROM
 
-ARG BUILD_VERSION
-
-RUN apk add --no-cache git yarn yq && \
-  git clone --depth=1 --branch=$BUILD_VERSION https://github.com/actualbudget/actual.git /app && \
-  cd /app && \
-  yarn workspaces focus @actual-app/sync-server --production
+COPY --from=build /usr/local/memos/ /usr/local/memos/
 
 COPY rootfs /
 
@@ -16,6 +15,7 @@ ARG BUILD_DESCRIPTION
 ARG BUILD_NAME
 ARG BUILD_REF
 ARG BUILD_REPOSITORY
+ARG BUILD_VERSION
 
 LABEL \
     io.hass.name="${BUILD_NAME}" \

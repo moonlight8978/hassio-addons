@@ -1,0 +1,13 @@
+#!/command/with-contenv bashio
+
+export MEMOS_MODE=$(bashio::config 'mode')
+export MEMOS_ADDR=$(bashio::config 'addr')
+export MEMOS_PORT=$(bashio::config 'port')
+export MEMOS_DRIVER=$(bashio::config 'driver')
+export MEMOS_DSN=$(bashio::config 'dsn')
+export TZ=$(bashio::config 'tz')
+
+bashio::log.info "Memos listening on $MEMOS_ADDR:$MEMOS_PORT tz=$TZ mode=$MEMOS_MODE driver=$MEMOS_DRIVER"
+
+cd /usr/local/memos
+./memos
