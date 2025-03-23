@@ -1,0 +1,33 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "rebaseWhen": "behind-base-branch",
+  "dependencyDashboard": true,
+  "labels": [
+    "dependencies",
+    "no-stale"
+  ],
+  "commitMessagePrefix": "chore(deps): update",
+  "commitMessageTopic": "{{depName}}",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "actual/config.y[a]?ml$"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "version:\\s[\"']?(?<currentValue>.*?)[\"']?\\s"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "actualbudget/actual"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "automerge": true
+    }
+  ]
+}
