@@ -3,7 +3,9 @@ FROM $BUILD_FROM
 
 ARG BUILD_ARCH
 
-RUN apk add --no-cache duplicity py3-boto3
+RUN apk add --no-cache \
+    duplicity=2.2.3-r1 \
+    py3-boto3=1.35.71-r0
 
 RUN rm -rf /run/s6-rc/scandir/s6rc-fdholder /run/s6-rc/scandir/s6rc-oneshot-runner /run/s6-rc/scandir/s6-linux-init-shutdownd
 

@@ -6,7 +6,7 @@
     "dependencies",
     "no-stale"
   ],
-  "commitMessagePrefix": "chore(deps): update",
+  "commitMessagePrefix": "chore(deps):",
   "commitMessageTopic": "{{depName}}",
   "customManagers": [
     {
@@ -20,6 +20,19 @@
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "actualbudget/actual"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "/Dockerfile$"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "\\s{4}(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s+"
+      ],
+      "datasourceTemplate": "repology",
+      "versioningTemplate": "loose",
+      "depNameTemplate": "alpine_3_21/{{package}}"
     }
   ],
   "packageRules": [
