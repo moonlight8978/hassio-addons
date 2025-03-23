@@ -23,7 +23,7 @@ schema:
   mode: list(prod|dev|demo)
   addr: str
   port: int
-  driver: str
+  driver: list(sqlite|postgres|mysql)
   dsn: str?
   tz: str?
 environment:
