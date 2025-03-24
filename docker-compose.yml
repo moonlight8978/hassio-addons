@@ -28,7 +28,7 @@ services:
       - 3000:3000
 
   chrome:
-    image: gcr.io/zenika-hub/alpine-chrome:123
+    image: gcr.io/zenika-hub/alpine-chrome:124
     restart: unless-stopped
     command:
       - --no-sandbox
