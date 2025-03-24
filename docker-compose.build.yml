@@ -1,0 +1,8 @@
+services:
+  memos:
+    image: ghcr.io/moonlight8978/hassio-addons-memos:0.24.2
+    build:
+      context: memos
+      dockerfile: Dockerfile.build
+      args:
+        - BUILD_VERSION=v0.24.2

@@ -1,13 +1,1 @@
-services:
-  memos:
-    build:
-      context: memos
-      args:
-        - BUILD_VERSION=0.24.2
-        - BUILD_FROM=ghcr.io/hassio-addons/base:17.2.2
-        - BUILD_ARCH=aarch64
-        - BUILD_DATE=2025-03-23
-        - BUILD_DESCRIPTION=Test
-        - BUILD_NAME=memos
-        - BUILD_REF=123
-        - BUILD_REPOSITORY=moonlight8978/hassio-addons
+docker-compose.build.yml

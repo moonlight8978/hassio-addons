@@ -9,3 +9,6 @@
 # Temp
 tmp/
 .tmp/
+
+# Local
+docker-compose.yml

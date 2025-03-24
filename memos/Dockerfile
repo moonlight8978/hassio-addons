@@ -1,11 +1,30 @@
-ARG BUILD_VERSION
 ARG BUILD_FROM
 
-FROM neosmemo/memos:${BUILD_VERSION} AS build
+FROM node:20-alpine AS frontend
+ARG BUILD_VERSION
 
-FROM $BUILD_FROM
+RUN apk add --update --no-cache git \
+    && npm install -g pnpm
 
-COPY --from=build /usr/local/memos/ /usr/local/memos/
+RUN git clone --depth=1 --branch=${BUILD_VERSION} https://github.com/usememos/memos.git /frontend-build \
+    && cd /frontend-build/web \
+    && pnpm i --frozen-lockfile \
+    && pnpm build --base "./"
+
+FROM golang:1.24-alpine AS backend
+ARG BUILD_VERSION
+
+WORKDIR /backend-build
+
+RUN apk add --update --no-cache git
+
+RUN git clone --depth=1 --branch=${BUILD_VERSION} https://github.com/usememos/memos.git /backend-build
+COPY --from=frontend /frontend-build/web/dist /backend-build/server/router/frontend/dist
+RUN go build -o memos ./bin/memos/main.go
+
+FROM ${BUILD_FROM}
+
+COPY --from=backend /backend-build/memos /usr/local/memos/
 
 COPY rootfs /
 
