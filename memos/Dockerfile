@@ -1,6 +1,6 @@
 ARG BUILD_FROM
 
-FROM node:20-alpine AS frontend
+FROM node:23-alpine AS frontend
 ARG BUILD_VERSION
 
 RUN apk add --update --no-cache git \
