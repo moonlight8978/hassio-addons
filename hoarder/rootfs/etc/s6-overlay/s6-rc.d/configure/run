@@ -1,0 +1,7 @@
+#!/command/with-contenv bashio
+
+printf "production" > /var/run/s6/container_environment/NODE_ENV
+printf "3000" > /var/run/s6/container_environment/PORT
+printf "0.0.0.0" > /var/run/s6/container_environment/HOSTNAME
+printf "1" > /var/run/s6/container_environment/NEXT_TELEMETRY_DISABLED
+printf "http://localhost:3000" > /var/run/s6/container_environment/NEXTAUTH_URL_INTERNAL
