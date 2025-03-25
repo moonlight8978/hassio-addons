@@ -17,23 +17,27 @@ options:
   HOSTNAME: "0.0.0.0"
   NEXTAUTH_SECRET: ""
   CHROMIUM_FLAGS: --disable-software-rasterizer --disable-dev-shm-usage --no-sandbox --disable-gpu --hide-scrollbars
-  OPENAI_KEY: ""
+  OPENAI_API_KEY: ""
   OPENAI_BASE_URL: ""
   INFERENCE_TEXT_MODEL: gpt-4o-mini
   INFERENCE_IMAGE_MODEL: gpt-4o-mini
+  INFERENCE_LANG: english
   EMBEDDING_TEXT_MODEL: text-embedding-3-small
   CHROMIUM_ENABLED: "true"
+  DISABLE_SIGNUPS: "false"
 schema:
   NODE_ENV: list(production)
   HOSTNAME: str
   NEXTAUTH_SECRET: str
   CHROMIUM_FLAGS: str
-  OPENAI_KEY: str?
+  OPENAI_API_KEY: str?
   OPENAI_BASE_URL: str?
   INFERENCE_TEXT_MODEL: str?
   INFERENCE_IMAGE_MODEL: str?
+  INFERENCE_LANG: str?
   EMBEDDING_TEXT_MODEL: str?
   CHROMIUM_ENABLED: bool?
+  DISABLE_SIGNUPS: bool?
 environment:
   PORT: "3000"
   NEXT_TELEMETRY_DISABLED: "1"
@@ -48,6 +52,7 @@ webui: "[PROTO:ssl]://[HOST]:[PORT:3000]"
 backup_exclude:
   - "*/*.log"
   - "*/queue.db"
+  - "*/assets"
 # Hoarder use absolute path for assets and APIs, so relative endpoint does not work for ingress
 ingress: false
 ingress_stream: true
