@@ -1,3 +1,9 @@
 #!/command/with-contenv bashio
 
-chromium-browser --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 $CHROMIUM_FLAGS
+if [[ $CHROMIUM_ENABLED == "false" ]]; then
+  bashio::log.info "Chromium is disabled"
+  exit 0
+else
+  bashio::log.info "Starting Chromium..."
+  chromium-browser --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222 $CHROMIUM_FLAGS
+fi

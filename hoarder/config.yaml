@@ -22,6 +22,7 @@ options:
   INFERENCE_TEXT_MODEL: gpt-4o-mini
   INFERENCE_IMAGE_MODEL: gpt-4o-mini
   EMBEDDING_TEXT_MODEL: text-embedding-3-small
+  CHROMIUM_ENABLED: "true"
 schema:
   NODE_ENV: list(production)
   HOSTNAME: str
@@ -32,6 +33,7 @@ schema:
   INFERENCE_TEXT_MODEL: str?
   INFERENCE_IMAGE_MODEL: str?
   EMBEDDING_TEXT_MODEL: str?
+  CHROMIUM_ENABLED: bool?
 environment:
   PORT: "3000"
   NEXT_TELEMETRY_DISABLED: "1"
@@ -43,7 +45,8 @@ ports:
 ports_description:
   3000/tcp: WebUI
 webui: "[PROTO:ssl]://[HOST]:[PORT:3000]"
-ingress: true
+# Hoarder use absolute path for assets and APIs, so relative endpoint does not work for ingress
+ingress: false
 ingress_stream: true
 panel_icon: mdi:link-variant-plus
 ingress_port: 3000
