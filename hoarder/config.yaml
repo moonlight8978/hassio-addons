@@ -45,6 +45,9 @@ ports:
 ports_description:
   3000/tcp: WebUI
 webui: "[PROTO:ssl]://[HOST]:[PORT:3000]"
+backup_exclude:
+  - "*/*.log"
+  - "*/queue.db"
 # Hoarder use absolute path for assets and APIs, so relative endpoint does not work for ingress
 ingress: false
 ingress_stream: true
