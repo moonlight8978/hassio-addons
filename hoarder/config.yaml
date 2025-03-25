@@ -52,6 +52,7 @@ webui: "[PROTO:ssl]://[HOST]:[PORT:3000]"
 backup_exclude:
   - "*/*.log"
   - "*/queue.db"
+  # Screenshots, Videos, ...
   - "*/assets"
 # Hoarder use absolute path for assets and APIs, so relative endpoint does not work for ingress
 ingress: false
