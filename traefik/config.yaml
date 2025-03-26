@@ -19,7 +19,8 @@ options:
         exposedByDefault: false
       file:
         filename: /etc/traefik/dynamic_conf.yml
-    api: {}
+    api:
+      insecure: true
     entryPoints:
       web:
         address: ":80"
@@ -48,10 +49,11 @@ ports_description:
   80/tcp: Web entrypoint
   443/tcp: Web Secure (HTTPS) entrypoint
   8080/tcp: Dashboard
-webui: "[PROTO:ssl]://[HOST]:[PORT:8081]"
+webui: "[PROTO:ssl]://[HOST]:[PORT:8081]/dashboard"
 ingress: true
 ingress_stream: true
 panel_icon: mdi:arrow-decision-outline
-ingress_port: 443
+ingress_port: 8080
+ingress_entry: /dashboard
 backup_exclude:
   - "*/*.log"
