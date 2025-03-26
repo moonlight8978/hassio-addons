@@ -50,7 +50,7 @@ ports_description:
   443/tcp: Web Secure (HTTPS) entrypoint
   8080/tcp: Dashboard
 webui: "[PROTO:ssl]://[HOST]:[PORT:8081]/dashboard"
-ingress: true
+ingress: false
 ingress_stream: true
 panel_icon: mdi:arrow-decision-outline
 ingress_port: 8080
