@@ -24,6 +24,7 @@ options:
   INFERENCE_LANG: english
   EMBEDDING_TEXT_MODEL: text-embedding-3-small
   CHROMIUM_ENABLED: "true"
+  BROWSER_WEB_URL: "http://localhost:9222"
   DISABLE_SIGNUPS: "false"
 schema:
   NODE_ENV: list(production)
@@ -37,12 +38,12 @@ schema:
   INFERENCE_LANG: str?
   EMBEDDING_TEXT_MODEL: str?
   CHROMIUM_ENABLED: bool?
+  BROWSER_WEB_URL: str?
   DISABLE_SIGNUPS: bool?
 environment:
   PORT: "3000"
   NEXT_TELEMETRY_DISABLED: "1"
   NEXTAUTH_URL_INTERNAL: "http://localhost:3000"
-  BROWSER_WEB_URL: "http://localhost:9222"
   DATA_DIR: "/data"
 ports:
   3000/tcp: 3000
