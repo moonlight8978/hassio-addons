@@ -1,0 +1,5 @@
+#!/command/with-contenv bashio
+
+mkdir -p /etc/traefik
+printf -- "$(bashio::config '"traefik.yml"')" > /etc/traefik/traefik.yml
+printf -- "$(bashio::config '"dynamic_conf.yml"')" > /etc/traefik/dynamic_conf.yml

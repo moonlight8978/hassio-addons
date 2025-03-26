@@ -37,3 +37,18 @@ services:
       - --remote-debugging-address=0.0.0.0
       - --remote-debugging-port=9222
       - --hide-scrollbars
+
+  traefik:
+    build:
+      context: traefik
+      args:
+        - BUILD_VERSION=v3.3.4
+        - BUILD_FROM=ghcr.io/hassio-addons/base:17.2.2
+        - BUILD_ARCH=aarch64
+        - BUILD_DATE=2025-03-23
+        - BUILD_DESCRIPTION=Test
+        - BUILD_NAME=traefik
+        - BUILD_REF=123
+        - BUILD_REPOSITORY=moonlight8978/hassio-addons
+    ports:
+      - 9081:8081

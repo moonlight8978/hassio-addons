@@ -48,6 +48,18 @@
     {
       "customType": "regex",
       "fileMatch": [
+        "traefik/config.y[a]?ml$"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "version:\\s[\"']?(?<currentValue>.*?)[\"']?\\s"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "traefik/traefik"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
         "/Dockerfile$"
       ],
       "matchStringsStrategy": "any",
