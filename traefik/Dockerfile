@@ -7,6 +7,7 @@ ARG BUILD_ARCH
 
 RUN ARCH=${BUILD_ARCH}; \
     if [ "$ARCH" = "aarch64" ]; then ARCH="arm64"; fi; \
+    if [ "$ARCH" = "i386" ]; then ARCH="386"; fi; \
     curl -fsSL "https://github.com/traefik/traefik/releases/download/${BUILD_VERSION}/traefik_${BUILD_VERSION}_linux_${ARCH}.tar.gz" -o traefik.tar.gz \
     && tar -xvf traefik.tar.gz \
     && mv traefik /traefik \
