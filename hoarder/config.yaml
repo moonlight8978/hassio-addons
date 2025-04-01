@@ -4,14 +4,12 @@ url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
 version: 0.23.0
 slug: hoarder
+image: "ghcr.io/moonlight8978/{arch}-hassio-addon-hoarder"
 init: false
 boot: auto
 arch:
   - aarch64
   - amd64
-  - armhf
-  - armv7
-  - i386
 options:
   NODE_ENV: production
   HOSTNAME: "0.0.0.0"
