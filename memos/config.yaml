@@ -4,14 +4,12 @@ url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
 version: 0.24.2
 slug: memos
+image: "ghcr.io/moonlight8978/{arch}-hassio-addon-memos"
 init: false
 boot: auto
 arch:
   - aarch64
   - amd64
-  - armhf
-  - armv7
-  - i386
 options:
   mode: prod
   addr: 0.0.0.0
