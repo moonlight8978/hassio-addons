@@ -4,6 +4,7 @@ url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
 version: "1.0.1"
 slug: "remote-backup"
+image: "ghcr.io/moonlight8978/{arch}-hassio-addon-remote-backup"
 init: false
 boot: manual
 map:
