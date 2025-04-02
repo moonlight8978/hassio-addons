@@ -1,0 +1,5 @@
+#!/command/with-contenv bashio
+
+while IFS= read -r key; do
+  printf -- "$(bashio::config $key)" > "/var/run/s6/container_environment/$key"
+done < <(jq -r 'keys[]' /data/options.json)

@@ -1,0 +1,55 @@
+name: WireGuard Easy
+description: hassio port of [wg-easy](https://github.com/wg-easy/wg-easy)
+url: https://github.com/moonlight8978/hassio-addons
+codenotary: work@bichls.dev
+version: 15.0.0-beta.11
+slug: wgeasy
+image: "ghcr.io/moonlight8978/{arch}-hassio-addon-wg-easy"
+init: false
+boot: auto
+arch:
+  - aarch64
+  - amd64
+options:
+  HOST: 0.0.0.0
+  INSECURE: false
+  PORT: 51821
+  INIT_ENABLED: false
+  INIT_USERNAME: ""
+  INIT_PASSWORD: ""
+  INIT_HOST: ""
+  INIT_PORT: 51820
+  INIT_DNS: "1.1.1.1,8.8.8.8"
+  INIT_IPV4_CIDR: ""
+  INIT_IPV6_CIDR: ""
+schema:
+  HOST: str
+  INSECURE: bool
+  PORT: int
+  INIT_ENABLED: bool
+  INIT_USERNAME: str?
+  INIT_PASSWORD: str?
+  INIT_HOST: str?
+  INIT_PORT: int?
+  INIT_DNS: str?
+  INIT_IPV4_CIDR: str?
+  INIT_IPV6_CIDR: str?
+environment:
+  DEBUG: Server,WireGuard,Database,CMD
+ports:
+  51821/tcp: 51821
+  51820/udp: 51820
+ports_description:
+  51821/tcp: WebUI
+  51820/udp: WireGuard
+# Ingress
+webui: "[PROTO:ssl]://[HOST]:[PORT:51821]"
+ingress: true
+ingress_stream: true
+panel_icon: mdi:vpn
+ingress_port: 51821
+# Permissions
+devices:
+  - /dev/net/tun
+privileged:
+  - NET_ADMIN
