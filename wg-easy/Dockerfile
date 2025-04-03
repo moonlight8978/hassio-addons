@@ -21,6 +21,11 @@ RUN update-alternatives --install /usr/sbin/iptables iptables /usr/sbin/iptables
     && update-alternatives --install /usr/sbin/ip6tables ip6tables /usr/sbin/ip6tables-legacy 10 --slave /usr/sbin/ip6tables-restore ip6tables-restore /usr/sbin/ip6tables-legacy-restore --slave /usr/sbin/ip6tables-save ip6tables-save /usr/sbin/ip6tables-legacy-save
 
 COPY --from=build /app /app
+# ref https://github.com/jdeath/homeassistant-addons/blob/9689289a9db25ad1914ac96943e8617d97321ebf/wgeasy/Dockerfile#L7-L9
+RUN sed -i 's|up ${infName}|up /data/${infName}.conf|g' server/chunks/nitro/nitro.mjs \
+    && sed -i 's|down ${infName}|down /data/${infName}.conf|g' server/chunks/nitro/nitro.mjs \
+    && sed -i 's|strip ${infName}|strip /data/${infName}.conf|g' server/chunks/nitro/nitro.mjs \
+    && sed -i 's|/etc/wireguard|/data|g' server/chunks/nitro/nitro.mjs
 RUN cd /app/server && npm install --no-save libsql
 
 HEALTHCHECK --interval=1m --timeout=5s --retries=3 CMD /usr/bin/timeout 5s /bin/sh -c "/usr/bin/wg show | /bin/grep -q interface || exit 1"

@@ -1,5 +1,5 @@
 #!/command/with-contenv bashio
 
-bashio::log.info "Starting wg-easy"
+bashio::log.info "Starting WireGuard Easy..."
 cd /app
 node server/index.mjs
