@@ -23,7 +23,9 @@ options:
   INIT_DNS: "1.1.1.1,8.8.8.8"
   INIT_IPV4_CIDR: ""
   INIT_IPV6_CIDR: ""
+  ip6tables_enabled: false
 schema:
+  # WireGuard Easy ENV
   HOST: str
   INSECURE: bool
   PORT: int
@@ -35,6 +37,9 @@ schema:
   INIT_DNS: str?
   INIT_IPV4_CIDR: str?
   INIT_IPV6_CIDR: str?
+
+  # Custom env
+  ip6tables_enabled: bool?
 environment:
   DEBUG: Server,WireGuard,Database,CMD
 ports:

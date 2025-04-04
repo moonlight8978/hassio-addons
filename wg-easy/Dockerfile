@@ -17,14 +17,10 @@ RUN apk add --no-cache \
     nodejs \
     npm
 
-RUN update-alternatives --install /usr/sbin/iptables iptables /usr/sbin/iptables-legacy 10 --slave /usr/sbin/iptables-restore iptables-restore /usr/sbin/iptables-legacy-restore --slave /usr/sbin/iptables-save iptables-save /usr/sbin/iptables-legacy-save
-    # && update-alternatives --install /usr/sbin/ip6tables ip6tables /usr/sbin/ip6tables-legacy 10 --slave /usr/sbin/ip6tables-restore ip6tables-restore /usr/sbin/ip6tables-legacy-restore --slave /usr/sbin/ip6tables-save ip6tables-save /usr/sbin/ip6tables-legacy-save
-
 COPY --from=build /app /app
-# ref https://github.com/jdeath/homeassistant-addons/blob/9689289a9db25ad1914ac96943e8617d97321ebf/wgeasy/Dockerfile#L7-L9
-RUN sed -i 's|up ${infName}|up /data/${infName}.conf|g' server/chunks/nitro/nitro.mjs \
-    && sed -i 's|down ${infName}|down /data/${infName}.conf|g' server/chunks/nitro/nitro.mjs \
-    && sed -i 's|strip ${infName}|strip /data/${infName}.conf|g' server/chunks/nitro/nitro.mjs \
+# https://github.com/Homebrew/homebrew-core/blob/1e8de6ff92a7bf13ca0b87ad9ac380f5fde534b4/Formula/w/wireguard-tools.rb#L34-L35
+RUN sed -i 's|/etc/wireguard|/data|g' /usr/bin/wg-quick \
+    # https://github.com/jdeath/homeassistant-addons/blob/9689289a9db25ad1914ac96943e8617d97321ebf/wgeasy/Dockerfile#L7-L9
     && sed -i 's|/etc/wireguard|/data|g' server/chunks/nitro/nitro.mjs
 RUN cd /app/server && npm install --no-save libsql
 
