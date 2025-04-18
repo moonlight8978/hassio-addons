@@ -2,7 +2,7 @@ name: Traefik
 description: hassio port of [traefik](https://github.com/traefik/traefik)
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
-version: v3.3.5
+version: v3.3.6
 slug: traefik
 image: "ghcr.io/moonlight8978/{arch}-hassio-addon-traefik"
 init: false
