@@ -2,7 +2,7 @@ name: Hoarder
 description: hassio port of [hoarder](https://github.com/hoarder-app/hoarder)
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
-version: 0.23.2
+version: 0.24.1
 slug: hoarder
 image: "ghcr.io/moonlight8978/{arch}-hassio-addon-hoarder"
 init: false
