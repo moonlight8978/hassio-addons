@@ -2,7 +2,7 @@ name: Memos
 description: hassio port of [usememos/memos](https://github.com/usememos/memos)
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
-version: 0.24.2
+version: 0.24.3
 slug: memos
 image: "ghcr.io/moonlight8978/{arch}-hassio-addon-memos"
 init: false
