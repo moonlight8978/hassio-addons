@@ -11,13 +11,13 @@ RUN apk add --no-cache git yarn yq npm \
 
 WORKDIR /app
 
-FROM $BUILD_FROM AS builder
+FROM source AS builder
 
 RUN yarn install
 RUN yarn workspace @actual-app/sync-server build
 RUN yarn workspace @actual-app/web build
 
-FROM $BUILD_FROM AS node_modules
+FROM source AS node_modules
 
 RUN yarn workspaces focus @actual-app/sync-server --production
 
