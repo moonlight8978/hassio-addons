@@ -23,7 +23,7 @@ RUN yarn workspaces focus @actual-app/sync-server --production
 
 FROM $BUILD_FROM
 
-RUN apk add --no-cache yarn
+RUN apk add --no-cache yarn yq
 
 WORKDIR /app
 
