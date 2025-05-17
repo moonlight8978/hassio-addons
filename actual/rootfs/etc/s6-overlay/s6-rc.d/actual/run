@@ -3,4 +3,4 @@
 bashio::log.info "Starting Actual..."
 
 cd /app
-exec yarn start:server
+exec node app.js

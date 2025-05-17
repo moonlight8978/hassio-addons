@@ -1,4 +1,20 @@
 services:
+  actual:
+    build:
+      context: actual
+      args:
+        - BUILD_VERSION=v25.5.0
+        - BUILD_FROM=ghcr.io/hassio-addons/base:17.2.2
+        - BUILD_ARCH=aarch64
+        - BUILD_DATE=2025-03-23
+        - BUILD_DESCRIPTION=Test
+        - BUILD_NAME=memos
+        - BUILD_REF=123
+        - BUILD_REPOSITORY=moonlight8978/hassio-addons
+    command: yarn start:server
+    ports:
+      - 5006:5006
+
   memos:
     build:
       context: memos

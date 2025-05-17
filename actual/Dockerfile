@@ -1,10 +1,10 @@
 ARG BUILD_FROM
 
-FROM $BUILD_FROM
+FROM $BUILD_FROM AS builder
 
 ARG BUILD_VERSION
 
-RUN apk add --no-cache git yarn yq \
+RUN apk add --no-cache git yarn yq npm \
   && git clone --depth=1 --branch=$BUILD_VERSION https://github.com/actualbudget/actual.git /app \
   && cd /app/packages/desktop-client \
   && git clone https://github.com/actualbudget/translations.git locale
@@ -12,11 +12,27 @@ RUN apk add --no-cache git yarn yq \
 WORKDIR /app
 
 RUN yarn install
-RUN yarn build:server
+RUN yarn workspace @actual-app/sync-server build
+RUN yarn workspace @actual-app/web build
+RUN rm -rf ./node_modules/@actual-app/web ./node_modules/@actual-app/sync-server
+
+FROM $BUILD_FROM
+
+RUN apk add --no-cache yarn
+
+WORKDIR /app
+
+COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/packages/desktop-client/package.json ./node_modules/@actual-app/web/package.json
+COPY --from=builder /app/packages/desktop-client/build ./node_modules/@actual-app/web/build
+COPY --from=builder /app/packages/sync-server/package.json /app/packages/sync-server/app.js ./
+COPY --from=builder /app/packages/sync-server/src ./src
+COPY --from=builder /app/packages/sync-server/migrations ./migrations
 
 COPY rootfs /
 
 ARG BUILD_ARCH
+ARG BUILD_VERSION
 ARG BUILD_DATE
 ARG BUILD_DESCRIPTION
 ARG BUILD_NAME
