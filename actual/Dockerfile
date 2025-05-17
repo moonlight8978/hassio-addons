@@ -1,12 +1,18 @@
 ARG BUILD_FROM
+
 FROM $BUILD_FROM
 
 ARG BUILD_VERSION
 
-RUN apk add --no-cache git yarn yq && \
-  git clone --depth=1 --branch=$BUILD_VERSION https://github.com/actualbudget/actual.git /app && \
-  cd /app && \
-  yarn workspaces focus @actual-app/sync-server --production
+RUN apk add --no-cache git yarn yq \
+  && git clone --depth=1 --branch=$BUILD_VERSION https://github.com/actualbudget/actual.git /app \
+  && cd /app/packages/desktop-client \
+  && git clone https://github.com/actualbudget/translations.git locale
+
+WORKDIR /app
+
+RUN yarn install
+RUN yarn build:server
 
 COPY rootfs /
 
