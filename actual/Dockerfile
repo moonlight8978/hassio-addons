@@ -1,6 +1,6 @@
 ARG BUILD_FROM
 
-FROM $BUILD_FROM AS builder
+FROM $BUILD_FROM AS source
 
 ARG BUILD_VERSION
 
@@ -11,10 +11,15 @@ RUN apk add --no-cache git yarn yq npm \
 
 WORKDIR /app
 
+FROM $BUILD_FROM AS builder
+
 RUN yarn install
 RUN yarn workspace @actual-app/sync-server build
 RUN yarn workspace @actual-app/web build
-RUN rm -rf ./node_modules/@actual-app/web ./node_modules/@actual-app/sync-server
+
+FROM $BUILD_FROM AS node_modules
+
+RUN yarn workspaces focus @actual-app/sync-server --production
 
 FROM $BUILD_FROM
 
@@ -22,7 +27,8 @@ RUN apk add --no-cache yarn
 
 WORKDIR /app
 
-COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=node_modules /app/node_modules /app/node_modules
+RUN rm -rf ./node_modules/@actual-app/web ./node_modules/@actual-app/sync-server
 COPY --from=builder /app/packages/desktop-client/package.json ./node_modules/@actual-app/web/package.json
 COPY --from=builder /app/packages/desktop-client/build ./node_modules/@actual-app/web/build
 COPY --from=builder /app/packages/sync-server/package.json /app/packages/sync-server/app.js ./
