@@ -2,6 +2,7 @@ name: WireGuard Easy
 description: hassio port of [wg-easy](https://github.com/wg-easy/wg-easy)
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
+# renovate: datasource=docker depName=ghcr.io/wg-easy/wg-easy
 version: 15.0.0-beta.11
 slug: wgeasy
 image: "ghcr.io/moonlight8978/{arch}-hassio-addon-wg-easy"
