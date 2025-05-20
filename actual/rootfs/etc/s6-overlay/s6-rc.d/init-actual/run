@@ -20,4 +20,3 @@ for allowed_login_method in ${allowed_login_methods[@]}; do
     export allowed_login_method
     yq -i '.allowedLoginMethods += [ strenv(allowed_login_method) ]' $CONFIG
 done
-
