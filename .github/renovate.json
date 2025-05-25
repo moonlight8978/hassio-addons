@@ -1,13 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "rebaseWhen": "behind-base-branch",
-  "dependencyDashboard": true,
-  "labels": [
-    "dependencies",
-    "no-stale"
+  "extends": [
+    "config:recommended",
+    "github>moonlight8978/renovate-config"
   ],
-  "commitMessagePrefix": "chore(deps):",
-  "commitMessageTopic": "{{depName}}",
   "customManagers": [
     {
       "customType": "regex",
@@ -35,8 +31,9 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": [
-        "github-releases"
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
       ],
       "automerge": true
     }
