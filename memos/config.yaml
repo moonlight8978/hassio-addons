@@ -3,7 +3,7 @@ description: hassio port of [usememos/memos](https://github.com/usememos/memos)
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
 # renovate: datasource=docker depName=neosmemo/memos
-version: 0.24.3
+version: 0.24.4
 slug: memos
 image: "ghcr.io/moonlight8978/{arch}-hassio-addon-memos"
 init: false
