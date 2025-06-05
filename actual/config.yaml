@@ -3,7 +3,7 @@ description: "Actual Budget (https://actualbudget.org/) addons for Home Assistan
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
 # renovate: datasource=docker depName=docker.io/actualbudget/actual-server
-version: 25.6.0
+version: 25.6.1
 slug: "actual"
 image: "ghcr.io/moonlight8978/{arch}-hassio-addon-actual"
 init: false
