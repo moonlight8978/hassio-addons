@@ -3,7 +3,7 @@ description: hassio port of [hoarder](https://github.com/hoarder-app/hoarder)
 url: https://github.com/moonlight8978/hassio-addons
 codenotary: work@bichls.dev
 # renovate: datasource=docker depName=ghcr.io/hoarder-app/hoarder
-version: 0.24.1
+version: 0.25.0
 slug: hoarder
 image: "ghcr.io/moonlight8978/{arch}-hassio-addon-hoarder"
 init: false
